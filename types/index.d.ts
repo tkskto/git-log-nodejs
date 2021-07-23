@@ -28,16 +28,7 @@ declare namespace gitLog {
     commit: Commit;
   }
 
-  export interface Config {
-    core: {
-      repositoryformatversion?: number;
-      filemode?: boolean;
-      bare?: boolean;
-      logallrefupdates?: boolean;
-      ignorecase?: boolean;
-      precomposeunicode?: boolean;
-    }
-  }
+  export interface Config {[key: string]: string | {[key: string]: string}}
 
   export interface GitLogConfig {
     dir: string;
