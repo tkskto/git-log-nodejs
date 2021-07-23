@@ -1,0 +1,66 @@
+{
+  "name": "git-log-nodejs",
+  "version": "0.0.1",
+  "description": "API for get git logs for Node.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc -p tsconfig.json -w",
+    "build": "rollup --config",
+    "lint": "eslint -c .eslintrc.json src",
+    "cover": "npm run cover:test && npm run cover:report",
+    "cover:test": "nyc npm run test:base -- --timeout 60000",
+    "cover:report": "nyc report --reporter=html",
+    "test": "npm run test:base -- --timeout 60000",
+    "test:base": "ts-mocha ./test/specs/*.ts",
+    "test:base:update": "ts-mocha ./test/specs/*.ts --update"
+  },
+  "keywords": [
+    "Git",
+    "log"
+  ],
+  "author": {
+    "name": "tkskto",
+    "url": "https://github.com/tkskto/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkskto/git-log-nodejs.git"
+  },
+  "license": "GNU General Public License v2.0",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=14.17.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "19.0.1",
+    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-node-resolve": "13.0.2",
+    "@rollup/plugin-typescript": "8.2.3",
+    "@types/mocha": "9.0.0",
+    "@types/node": "16.4.1",
+    "@typescript-eslint/eslint-plugin": "4.28.4",
+    "@typescript-eslint/parser": "4.28.4",
+    "eslint": "7.31.0",
+    "husky": "7.0.1",
+    "lint-staged": "11.1.0",
+    "mocha": "9.0.2",
+    "nyc": "15.1.0",
+    "rollup": "2.53.3",
+    "rollup-plugin-license": "2.5.0",
+    "ts-mocha": "8.0.0",
+    "typescript": "4.3.5"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint"
+    ]
+  }
+}
