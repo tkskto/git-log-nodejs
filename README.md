@@ -2,7 +2,7 @@
 
 git-log-nodejs is a tool to get git logs.
 
-This call [Git](https://git-scm.com/) commands inside and parse the result to be easy to control with JavaScript.
+This call [Git™](https://git-scm.com/) commands inside and parse the result to be easy to control with JavaScript.
 
 ## Usage
 

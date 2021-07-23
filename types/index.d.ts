@@ -5,20 +5,14 @@ declare namespace gitLog {
   }
 
   export interface Commit {
-    committer: Committer;
+    author: Author;
     hash: string;
     date: number;
-    message: string;
-    parent: string;
+    parent: string[];
     file?: string[];
   }
 
   export interface Author {
-    name: string;
-    email: string;
-  }
-
-  export interface Committer {
     name: string;
     email: string;
   }
@@ -59,8 +53,6 @@ declare namespace gitLog {
     commits(depth: number): commit[];
 
     authors(): Author[];
-
-    committers(): Committer[];
 
     branches(): Branch[];
 
