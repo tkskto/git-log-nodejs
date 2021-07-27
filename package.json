@@ -9,9 +9,7 @@
     "dev": "tsc -p tsconfig.json -w",
     "build": "rollup --config",
     "lint": "eslint -c .eslintrc.json src",
-    "cover": "npm run cover:test && npm run cover:report",
-    "cover:test": "nyc npm run test:base",
-    "cover:report": "nyc report --reporter=html",
+    "cover": "jest --collectCoverage true",
     "test": "jest"
   },
   "keywords": [
