@@ -16,6 +16,7 @@ const banner = `/*!
   ${pkg.name} v${pkg.version}
   ${pkg.author.url}
   Released under the ${pkg.license} License.
+  See LICENSE for full license.
   dependencies: 
     ${dependencies.trim()}
 */`;

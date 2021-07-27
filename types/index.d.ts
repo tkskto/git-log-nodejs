@@ -1,29 +1,34 @@
 declare namespace gitLog {
-  export interface Remote {
+  export type Remote = {
     url: string;
     fetch: string;
   }
 
-  export interface Commit {
+  export type Commit = {
     author: Author;
     hash: string;
     date: number;
     parent: string[];
-    file?: string[];
+    files?: File[];
   }
 
-  export interface Author {
+  export type LogOption = {
+    count: number;
+    withFile: boolean;
+  }
+
+  export type Author = {
     name: string;
     email: string;
   }
 
-  export interface Branch {
+  export type Branch = {
     name: string;
     remote: string;
     commit: Commit;
   }
 
-  export interface Tag {
+  export type Tag = {
     name: string;
     commit: Commit;
   }
@@ -35,13 +40,14 @@ declare namespace gitLog {
   }
 
   export interface File {
-    fileName?: string;
+    type: 'add' | 'modify' | 'delete';
+    fileName: string;
   }
 
   export interface GitLog {
     remotes(): {[key: string]: Remote}[];
 
-    commits(depth: number): commit[];
+    commits(commitArguments: LogOption): commit[];
 
     authors(): Author[];
 

@@ -10,11 +10,9 @@
     "build": "rollup --config",
     "lint": "eslint -c .eslintrc.json src",
     "cover": "npm run cover:test && npm run cover:report",
-    "cover:test": "nyc npm run test:base -- --timeout 60000",
+    "cover:test": "nyc npm run test:base",
     "cover:report": "nyc report --reporter=html",
-    "test": "npm run test:base -- --timeout 60000",
-    "test:base": "ts-mocha ./test/specs/*.ts",
-    "test:base:update": "ts-mocha ./test/specs/*.ts --update"
+    "test": "jest"
   },
   "keywords": [
     "Git",
@@ -46,15 +44,18 @@
     "@rollup/plugin-typescript": "8.2.3",
     "@types/mocha": "9.0.0",
     "@types/node": "16.4.1",
+    "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "4.28.4",
     "@typescript-eslint/parser": "4.28.4",
     "eslint": "7.31.0",
     "husky": "7.0.1",
+    "jest": "^27.0.6",
     "lint-staged": "11.1.0",
     "mocha": "9.0.2",
     "nyc": "15.1.0",
     "rollup": "2.53.3",
     "rollup-plugin-license": "2.5.0",
+    "ts-jest": "^27.0.4",
     "ts-mocha": "8.0.0",
     "typescript": "4.3.5"
   },
