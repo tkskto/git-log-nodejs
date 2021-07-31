@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "*": ["types/*"]
+    },
     "target": "ESNext",
     "module": "ESNext",
     "removeComments": true,
