@@ -4,8 +4,6 @@
     "paths": {
       "*": ["types/*"]
     },
-    "target": "ESNext",
-    "module": "ESNext",
     "removeComments": true,
     "strict": true,
     "noEmit": true,
@@ -15,6 +13,9 @@
       "node_modules/@types",
       "types"
     ],
+    "lib": ["ES2020"],
+    "module": "ES2020",
+    "target": "ES2020",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true

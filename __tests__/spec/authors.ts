@@ -5,6 +5,8 @@ describe('authors test', () => {
   test('default', async () => {
     const authorData = await authors(DEFAULT_AUTHOR_OPTION);
 
+    console.log(authorData);
+
     expect(authorData).toStrictEqual([
       { name: 'kato takeshi', email: 'tkskto@gmail.com', commitCount: 1 },
       { name: 'tkskto', email: 'tkskto@gmail.com', commitCount: authorData[1].commitCount } // TODO

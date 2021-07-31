@@ -17,6 +17,8 @@ branch.main.remote=origin
 branch.main.merge=refs/heads/main`.split('\n');
   const config = await convertConfigToJSON(configList);
 
+  console.log(config);
+
   expect(config).toStrictEqual({
     credential: { helper: 'osxkeychain' },
     user: { name: 'tkskto', email: 'tkskto@gmail.com' },

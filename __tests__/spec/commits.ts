@@ -7,6 +7,8 @@ describe('commits test', () => {
     const logs = await commits(DEFAULT_LOG_OPTION);
     const first = logs[logs.length - 1];
 
+    console.log(logs);
+
     expect(first).toStrictEqual({
       hash: 'f366fdf4e095ee08d733b54a1dc3eff81f3f075f',
       author: {
@@ -25,6 +27,8 @@ describe('commits test', () => {
 
     const logs = await commits(option);
     const first = logs[logs.length - 1];
+
+    console.log(logs);
 
     expect(first).toStrictEqual({
       hash: 'f366fdf4e095ee08d733b54a1dc3eff81f3f075f',
@@ -54,6 +58,8 @@ describe('commits test', () => {
 
     const logs = await commits(option);
     const first = logs[logs.length - 1];
+
+    console.log(first);
 
     expect(first).toStrictEqual({
       hash: 'f366fdf4e095ee08d733b54a1dc3eff81f3f075f',
