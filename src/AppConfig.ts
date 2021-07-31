@@ -1,1 +1,0 @@
-export const DEFAULT_MAX_LOG_COUNT = 1000;

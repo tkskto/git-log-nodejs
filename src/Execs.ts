@@ -4,7 +4,11 @@ import {spawn} from 'child_process';
 const commonFunction = (command: string, option = ['']): Promise<string> => {
   return new Promise((resolve, reject) => {
     let result = '';
-    const childProcess = spawn('git', [command, ...option]);
+    const options = [command, ...option];
+
+    console.log(`\u001b[32m command:\u001b[37m git ${options.join(' ')}`);
+
+    const childProcess = spawn('git', options);
 
     childProcess.stdout.on('data', (chunk) => {
       result += chunk;
@@ -18,7 +22,7 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
       if (0 === code) {
         resolve(result.trim());
       } else {
-        reject(`something went wrong with command: git ${[command, ...option].join(' ')}`);
+        reject(`something went wrong with command: git ${options.join(' ')}`);
       }
     });
   });
@@ -28,8 +32,9 @@ const makeOption = (...params: string[]): string[] => {
   return params.filter((item) => item); // filtering false
 }
 
-export const getLog = ({count, withFile}: LogOption): Promise<string> => {
+export const getLog = ({count, withFile, branch}: LogOption): Promise<string> => {
   const option = makeOption(
+    branch ? branch : '',
     `--max-count=${count}`,
     withFile ? '--name-status' : '',
     /**

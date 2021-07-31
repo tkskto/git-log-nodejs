@@ -1,11 +1,11 @@
 import Commit = gitLog.Commit;
 import LogOption = gitLog.LogOption;
-import {DEFAULT_MAX_LOG_COUNT} from './AppConfig';
+import {DEFAULT_LOG_OPTION} from './Defaults';
 import {getLog} from './Execs';
 import {parseFileData} from './Files';
 import {makeErrorMessage} from './ErrorLogFactory';
 
-export const commits = async (params: LogOption = {count: DEFAULT_MAX_LOG_COUNT, withFile: true}): Promise<Commit[]> => {
+export const commits = async (params: LogOption = DEFAULT_LOG_OPTION): Promise<Commit[]> => {
   try {
     const logs: string = await getLog(params);
 

@@ -15,6 +15,7 @@ declare namespace gitLog {
   export type LogOption = {
     count: number;
     withFile: boolean;
+    branch: string | 'HEAD';
   }
 
   export type Author = {
