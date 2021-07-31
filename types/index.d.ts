@@ -48,9 +48,9 @@ declare module 'git-log-nodejs' {
 
   export function remotes(): {[key: string]: Remote}[];
 
-  export function commits(params: LogOption): Promise<Commit[]>;
+  export function commits(params?: LogOption): Promise<Commit[]>;
 
-  export function authors(params: LogOption): Promise<Author[]>;
+  export function authors(params?: LogOption): Promise<Author[]>;
 
   export function branches(): Branch[];
 
