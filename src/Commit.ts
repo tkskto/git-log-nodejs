@@ -1,5 +1,4 @@
-import Commit = gitLog.Commit;
-import LogOption = gitLog.LogOption;
+import {LogOption, Commit} from 'git-log-nodejs';
 import {DEFAULT_LOG_OPTION} from './Defaults';
 import {getCommits} from './Execs';
 import {parseFileData} from './Files';

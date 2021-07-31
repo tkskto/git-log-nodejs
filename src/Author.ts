@@ -1,5 +1,4 @@
-import Author = gitLog.Author;
-import LogOption = gitLog.LogOption;
+import {LogOption, Author} from 'git-log-nodejs';
 import {getAuthor} from './Execs';
 import {makeErrorMessage} from './ErrorLogFactory';
 import {DEFAULT_AUTHOR_OPTION} from './Defaults';

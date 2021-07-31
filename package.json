@@ -1,10 +1,8 @@
 {
   "name": "git-log-nodejs",
-  "version": "0.0.1",
-  "description": "API for get git logs for Node.js",
+  "version": "0.1.0",
+  "description": "git-log-nodejs is a tool to get git logs.",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "type": "module",
   "scripts": {
     "dev": "rollup --config -w",
     "build": "rollup --config",
@@ -39,8 +37,8 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "13.0.2",
     "@rollup/plugin-typescript": "8.2.3",
-    "@types/node": "16.4.1",
     "@types/jest": "^26.0.24",
+    "@types/node": "16.4.1",
     "@typescript-eslint/eslint-plugin": "4.28.4",
     "@typescript-eslint/parser": "4.28.4",
     "eslint": "7.31.0",

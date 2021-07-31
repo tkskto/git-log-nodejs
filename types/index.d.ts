@@ -1,4 +1,4 @@
-declare namespace gitLog {
+declare module 'git-log-nodejs' {
   export type Remote = {
     url: string;
     fetch: string;
@@ -46,19 +46,17 @@ declare namespace gitLog {
     fileName: string;
   }
 
-  export interface GitLog {
-    remotes(): {[key: string]: Remote}[];
+  export function remotes(): {[key: string]: Remote}[];
 
-    commits(commitArguments: LogOption): commit[];
+  export function commits(params: LogOption): Promise<Commit[]>;
 
-    authors(): Author[];
+  export function authors(params: LogOption): Promise<Author[]>;
 
-    branches(): Branch[];
+  export function branches(): Branch[];
 
-    tags(): Tag[];
+  export function tags(): Tag[];
 
-    config(): Config;
+  export function config(): Promise<Config>;
 
-    setGitLogConfig(config: GitLogConfig): void;
-  }
+  export function setGitLogConfig(config: GitLogConfig): void;
 }

@@ -1,4 +1,4 @@
-import LogOption = gitLog.LogOption;
+import {LogOption} from 'git-log-nodejs';
 import {spawn} from 'child_process';
 import {DEFAULT_TIMEOUT_MILLISECONDS} from './Defaults';
 
@@ -36,7 +36,7 @@ const makeOption = (...params: string[]): string[] => {
 export const getCommits = ({count, withFile, branch}: LogOption): Promise<string> => {
   const option = makeOption(
     branch ? branch : '',
-    `--max-count=${count}`,
+    count > 0 ? `--max-count=${count}` : '',
     withFile ? '--name-status' : '',
     /**
      * do not include body.

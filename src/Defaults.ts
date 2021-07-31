@@ -1,4 +1,5 @@
-import LogOption = gitLog.LogOption;
+import {LogOption} from 'git-log-nodejs';
+
 export const DEFAULT_TIMEOUT_MILLISECONDS = 5000;
 export const DEFAULT_MAX_LOG_COUNT = 1000;
 export const DEFAULT_BRANCH_NAME = '';

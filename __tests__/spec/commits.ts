@@ -1,4 +1,4 @@
-import LogOption = gitLog.LogOption;
+import {LogOption} from 'git-log-nodejs';
 import {commits} from '../../src';
 import {DEFAULT_LOG_OPTION} from '../../src/Defaults';
 

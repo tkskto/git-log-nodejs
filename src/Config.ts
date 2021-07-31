@@ -1,6 +1,6 @@
+import {Config} from 'git-log-nodejs';
 import {getConfig} from './Execs';
 import {makeErrorMessage} from './ErrorLogFactory';
-import Config = gitLog.Config;
 
 /**
  * [key1.key2.key3 = value] -> {key1: {key2: {key3: value}}}

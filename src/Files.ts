@@ -1,4 +1,5 @@
-import File = gitLog.File;
+import {File} from 'git-log-nodejs';
+
 /**
  * @param {string[]} files the string must be like a {[A|M|D]\t{filename}}
  * @returns File[]
