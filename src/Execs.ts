@@ -1,5 +1,6 @@
 import LogOption = gitLog.LogOption;
 import {spawn} from 'child_process';
+import {DEFAULT_TIMEOUT_MILLISECONDS} from './Defaults';
 
 const commonFunction = (command: string, option = ['']): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -8,7 +9,7 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
 
     console.log(`\u001b[32m command:\u001b[37m git ${options.join(' ')}`);
 
-    const childProcess = spawn('git', options);
+    const childProcess = spawn('git', options, {timeout: DEFAULT_TIMEOUT_MILLISECONDS});
 
     childProcess.stdout.on('data', (chunk) => {
       result += chunk;
@@ -32,7 +33,7 @@ const makeOption = (...params: string[]): string[] => {
   return params.filter((item) => item); // filtering false
 }
 
-export const getLog = ({count, withFile, branch}: LogOption): Promise<string> => {
+export const getCommits = ({count, withFile, branch}: LogOption): Promise<string> => {
   const option = makeOption(
     branch ? branch : '',
     `--max-count=${count}`,
@@ -53,6 +54,16 @@ export const getLog = ({count, withFile, branch}: LogOption): Promise<string> =>
     `--pretty=format:{"author":{"name":"%an","email":"%ae"},"hash":"%H","date":"%at","parent":"%P"}`, // do not include space in format
   );
   return commonFunction('log', option);
+};
+
+export const getAuthor = ({branch}: LogOption): Promise<string> => {
+  const option = makeOption(
+    // branch name is required. See <https://git-scm.com/docs/git-shortlog> description.
+    branch ? branch : 'HEAD',
+    // this is include summary and emails
+    '-se'
+  );
+  return commonFunction('shortlog', option);
 };
 
 export const getConfig = (): Promise<string> => {

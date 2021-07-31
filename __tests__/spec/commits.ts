@@ -2,7 +2,7 @@ import LogOption = gitLog.LogOption;
 import {commits} from '../../src';
 import {DEFAULT_LOG_OPTION} from '../../src/Defaults';
 
-describe('commits __tests__', () => {
+describe('commits test', () => {
   test('default', async () => {
     const logs = await commits(DEFAULT_LOG_OPTION);
     const first = logs[logs.length - 1];

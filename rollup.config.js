@@ -1,7 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
-import commonjs from '@rollup/plugin-commonjs';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
-import json from '@rollup/plugin-json';
 import pkg from './package.json';
 
 let dependencies = '';
@@ -35,8 +33,6 @@ export default [
       'child_process',
     ],
     plugins: [
-      json(),
-      commonjs(),
       nodeResolve(),
       typescript({
         tsconfig: 'tsconfig.json',

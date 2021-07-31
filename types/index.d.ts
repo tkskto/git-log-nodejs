@@ -21,6 +21,7 @@ declare namespace gitLog {
   export type Author = {
     name: string;
     email: string;
+    commitCount: number;
   }
 
   export type Branch = {
