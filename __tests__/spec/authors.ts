@@ -7,7 +7,7 @@ describe('authors test', () => {
 
     expect(authorData).toStrictEqual([
       { name: 'kato takeshi', email: 'tkskto@gmail.com', commitCount: 1 },
-      { name: 'tkskto', email: 'tkskto@gmail.com', commitCount: 8 }
+      { name: 'tkskto', email: 'tkskto@gmail.com', commitCount: authorData[1].commitCount } // TODO
     ]);
   });
 });
