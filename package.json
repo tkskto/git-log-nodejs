@@ -9,7 +9,8 @@
     "build": "rollup --config",
     "lint": "eslint -c .eslintrc.json src",
     "cover": "jest --collectCoverage true",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --ci"
   },
   "keywords": [
     "Git",

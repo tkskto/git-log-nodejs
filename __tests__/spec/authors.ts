@@ -1,15 +1,21 @@
 import {authors} from '../../src';
 import {DEFAULT_AUTHOR_OPTION} from '../../src/Defaults';
 
+const isCI = process.argv[2] === '--ci';
+
 describe('authors test', () => {
   test('default', async () => {
     const authorData = await authors(DEFAULT_AUTHOR_OPTION);
 
-    console.log(authorData);
-
-    expect(authorData).toStrictEqual([
-      { name: 'kato takeshi', email: 'tkskto@gmail.com', commitCount: 1 },
-      { name: 'tkskto', email: 'tkskto@gmail.com', commitCount: authorData[1].commitCount } // TODO
-    ]);
+    if (isCI) {
+      expect(authorData).toStrictEqual([
+        {name: 'tkskto', email: 'tkskto@gmail.com', commitCount: 1} // TODO
+      ]);
+    } else {
+      expect(authorData).toStrictEqual([
+        {name: 'kato takeshi', email: 'tkskto@gmail.com', commitCount: 1},
+        {name: 'tkskto', email: 'tkskto@gmail.com', commitCount: authorData[1].commitCount} // TODO
+      ]);
+    }
   });
 });
