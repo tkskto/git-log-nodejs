@@ -30,7 +30,7 @@ const commitList = await commits();
 
 ### Commit
 
-#### `Commit.author`: [Author](#Author)
+#### `Commit.author`: [Pick<Author, 'email' | 'name'>](#Author)
 
 #### `Commit.hash`: string
 

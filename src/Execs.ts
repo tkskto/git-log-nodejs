@@ -7,7 +7,7 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
     let result = '';
     const options = [command, ...option];
 
-    console.log(`\u001b[32m command:\u001b[37m git ${options.join(' ')}`);
+    // console.log(`\u001b[32m command:\u001b[37m git ${options.join(' ')}`);
 
     const childProcess = spawn('git', options, {timeout: DEFAULT_TIMEOUT_MILLISECONDS});
 
@@ -51,7 +51,7 @@ export const getCommits = ({count, withFile, branch}: LogOption): Promise<string
      *   parent: string,
      * }
      */
-    `--pretty=format:{"author":{"name":"%an","email":"%ae"},"hash":"%H","date":"%at","parent":"%P"}`, // do not include space in format
+    '--pretty=format:{"author":{"name":"%an","email":"%ae"},"hash":"%H","date":"%at","parent":"%P"}', // do not include space in format
   );
   return commonFunction('log', option);
 };
@@ -70,10 +70,6 @@ export const getConfig = (): Promise<string> => {
   return commonFunction('config', ['--list']);
 };
 
-export const getLogWithAuthor = (usernames: string[]): Promise<string> => {
-  return commonFunction('log', [`--author="${usernames.join('|')}"`]);
-}
-
-export const getLogWithFunctionNameInFile = (functionsName: string, fileName: string): Promise<string> => {
-  return commonFunction('log', [`-L:${functionsName}:${fileName}`]);
-}
+export const getRemote = (): Promise<string> => {
+  return commonFunction('remote', ['-v']);
+};
