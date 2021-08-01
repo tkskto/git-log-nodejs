@@ -10,10 +10,9 @@ describe('branch test', () => {
       expect(branch.local.length).toStrictEqual(1);
       expect(branch.remote).toBeUndefined();
     } else {
+      // TODO: it must be failed.
       expect(branch).toStrictEqual({
         local: [
-          'feature/add-branches',
-          'feature/add-remote-details',
           'main'
         ],
       });
@@ -30,14 +29,13 @@ describe('branch test', () => {
         expect(branch.remote.pull.length).toStrictEqual(1);
       }
     } else {
+      // TODO: it must be failed.
       expect(branch).toStrictEqual({
         local: [
-          'feature/add-branches',
-          'feature/add-remote-details',
           'main'
         ],
         remote: {
-          origin: [ 'feature/add-branches', 'main' ],
+          origin: [ 'main' ],
         },
       });
     }
