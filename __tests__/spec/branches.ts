@@ -7,9 +7,8 @@ describe('branch test', () => {
     const branch = await branches(false);
 
     if (isCI) {
-      expect(branch).toStrictEqual({
-        local: [ 'main' ],
-      });
+      expect(branch.local.length).toStrictEqual(1);
+      expect(branch.remote).toBeUndefined();
     } else {
       expect(branch).toStrictEqual({
         local: [
@@ -18,6 +17,7 @@ describe('branch test', () => {
           'main'
         ],
       });
+      expect(branch.remote).toBeUndefined();
     }
   });
 
@@ -25,12 +25,10 @@ describe('branch test', () => {
     const branch = await branches(true);
 
     if (isCI) {
-      expect(branch).toStrictEqual({
-        local: [ 'main' ],
-        remote: {
-          origin: [ 'main' ],
-        },
-      });
+      expect(branch.local.length).toStrictEqual(1);
+      if (branch.remote && branch.remote.pull) {
+        expect(branch.remote.pull.length).toStrictEqual(1);
+      }
     } else {
       expect(branch).toStrictEqual({
         local: [
@@ -39,7 +37,7 @@ describe('branch test', () => {
           'main'
         ],
         remote: {
-          origin: [ 'main' ],
+          origin: [ 'feature/add-branches', 'main' ],
         },
       });
     }
