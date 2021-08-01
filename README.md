@@ -38,6 +38,12 @@ See the [types](./types/index.d.ts) for details.
 
 #### `Author.commitCount`: number
 
+### Branches
+
+#### branches.local: string[]
+
+#### branches.remote: Record<string, string[]>
+
 ### Commit
 
 #### `Commit.author`: [Pick<Author, 'email' | 'name'>](#Author)
@@ -62,7 +68,11 @@ Type of `Remote` is `Record<string, { fetch: string, push: string }>`. `Record` 
 
 #### `Remote.origin.fetch`: string
 
+`origin` is remoteName. It depends on your settings.
+
 #### `Remote.origin.push`: string
+
+`origin` is remoteName. It depends on your settings.
 
 ## Functions
 
@@ -88,9 +98,25 @@ filtering logs with branchName. default is `'HEAD'`.
 
 *   [Author](#Author)
 
-### [WIP] branches()
+### branches()
 
-Get branch info.
+Get branch info with `git branch` command.
+
+#### Since
+
+0.3.0
+
+#### Arguments
+
+* withRemote
+
+##### withRemote: boolean
+
+To get remote info, set it `true`. default is `true`.
+
+#### Returns
+
+*   [Branches](#Branches)
 
 ### commits()
 
@@ -106,15 +132,15 @@ Get commit info with `git log` command.
 
 ##### `logOption.count`: number
 
-how many log to get. default is `1000`. `0` is no limit.
+How many log to get. default is `1000`. `0` is no limit.
 
 ##### `logOption.withFile`: boolean
 
-whether to get file name. default is `false`.
+Whether to get file name. default is `false`.
 
 ##### `logOption.branch`: string
 
-filtering logs with branch name. default is `''`.
+Filtering logs with branch name. default is `''`.
 
 #### Returns
 
