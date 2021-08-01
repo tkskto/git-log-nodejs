@@ -9,12 +9,12 @@ describe('authors test', () => {
 
     if (isCI) {
       expect(authorData).toStrictEqual([
-        {name: 'tkskto', email: 'tkskto@gmail.com', commitCount: 1} // TODO
+        {name: 'kato takeshi', email: 'tkskto@gmail.com', commitCount: 1},
       ]);
     } else {
       expect(authorData).toStrictEqual([
         {name: 'kato takeshi', email: 'tkskto@gmail.com', commitCount: 1},
-        {name: 'tkskto', email: 'tkskto@gmail.com', commitCount: authorData[1].commitCount} // TODO
+        {name: 'tkskto', email: 'tkskto@gmail.com', commitCount: authorData[1].commitCount}, // TODO
       ]);
     }
   });

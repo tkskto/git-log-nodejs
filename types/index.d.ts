@@ -1,11 +1,12 @@
+// # type definitions of git-log-nodejs
 declare module 'git-log-nodejs' {
-  export type Remote = {
-    url: string;
-    fetch: string;
-  }
+
+  // ## Types
+
+  export type Remote = Record<string, { fetch: string, push: string }>
 
   export type Commit = {
-    author: Author;
+    author: Pick<Author, 'email' | 'name'>;
     hash: string;
     date: number;
     parent: string[];
@@ -27,12 +28,12 @@ declare module 'git-log-nodejs' {
   export type Branch = {
     name: string;
     remote: string;
-    commit: Commit;
+    hash: string;
   }
 
   export type Tag = {
     name: string;
-    commit: Commit;
+    hash: string;
   }
 
   export interface Config {[key: string]: string | {[key: string]: string}}
@@ -46,7 +47,9 @@ declare module 'git-log-nodejs' {
     fileName: string;
   }
 
-  export function remotes(): {[key: string]: Remote}[];
+  // # Functions
+
+  export function remotes(): Promise<Remote>;
 
   export function commits(params?: LogOption): Promise<Commit[]>;
 

@@ -28,17 +28,7 @@ const commitList = await commits();
 
 ## Types
 
-### Commit
-
-#### `Commit.author`: [Author](#Author)
-
-#### `Commit.hash`: string
-
-#### `Commit.date`: number
-
-#### `Commit.parent`: string[]
-
-#### `Commit.files`: [File](#File)[]
+See the [types](./types/index.d.ts) for details.
 
 ### Author
 
@@ -48,19 +38,59 @@ const commitList = await commits();
 
 #### `Author.commitCount`: number
 
+### Commit
+
+#### `Commit.author`: [Pick<Author, 'email' | 'name'>](#Author)
+
+#### `Commit.hash`: string
+
+#### `Commit.date`: number
+
+#### `Commit.parent`: string[]
+
+#### `Commit.files`: [File](#File)[]
+
 ### File
 
 #### `File.type`: 'add' | 'modify' | 'delete'
 
 #### `File.fileName`: string
 
+### Remote
+
+Type of `Remote` is `Record<string, { fetch: string, push: string }>`. `Record` is one of the [Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys)
+
+#### `Remote.origin.fetch`: string
+
+#### `Remote.origin.push`: string
+
 ## Functions
 
 See the [types](./types/index.d.ts) for details.
 
-### [WIP] remotes()
+### authors()
 
-Get remote info.
+Get author info with `git shortlog` command.
+
+#### Since
+
+0.1.0
+
+#### Arguments
+
+* `logOption`
+
+##### `logOption.branch`: string
+
+filtering logs with branchName. default is `'HEAD'`.
+
+#### Returns
+
+*   [Author](#Author)
+
+### [WIP] branches()
+
+Get branch info.
 
 ### commits()
 
@@ -90,34 +120,6 @@ filtering logs with branch name. default is `''`.
 
 *   [Commit](#Commit)
 
-### authors()
-
-Get author info with `git shortlog` command.
-
-#### Since
-
-0.1.0
-
-#### Arguments
-
-* `logOption`
-
-##### `logOption.branch`: string
-
-filtering logs with branchName. default is `'HEAD'`.
-
-#### Returns
-
-*   [Author](#Author)
-
-### [WIP] branches()
-
-Get branch info.
-
-### [WIP] tags()
-
-Get tag info.
-
 ### config()
 
 Get config info with `git config --list`.
@@ -135,3 +137,23 @@ Get config info with `git config --list`.
 *   Config: object
 
 Depends on your settings. See [git-config Documentation](https://git-scm.com/docs/git-config).
+
+### [WIP] tags()
+
+Get tag info.
+
+### remotes()
+
+Get remote info with `git remote -v` command.
+
+#### Since
+
+0.2.0
+
+#### Arguments
+
+*   nothing
+
+#### Returns
+
+*   [Remote](#Remote)
