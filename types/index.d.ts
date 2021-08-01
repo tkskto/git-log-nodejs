@@ -1,4 +1,8 @@
+// # type definitions of git-log-nodejs
 declare module 'git-log-nodejs' {
+
+  // ## Types
+
   export type Remote = Record<string, { fetch: string, push: string }>
 
   export type Commit = {
@@ -43,7 +47,9 @@ declare module 'git-log-nodejs' {
     fileName: string;
   }
 
-  export function remotes(): {[key: string]: Remote}[];
+  // # Functions
+
+  export function remotes(): Promise<Remote>;
 
   export function commits(params?: LogOption): Promise<Commit[]>;
 
