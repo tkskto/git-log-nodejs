@@ -31,7 +31,7 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
 
 const makeOption = (...params: string[]): string[] => {
   return params.filter((item) => item); // filtering false
-}
+};
 
 export const getCommits = ({count, withFile, branch}: LogOption): Promise<string> => {
   const option = makeOption(
@@ -64,6 +64,14 @@ export const getAuthor = ({branch}: LogOption): Promise<string> => {
     '-se'
   );
   return commonFunction('shortlog', option);
+};
+
+export const getBranch = (withRemote: boolean): Promise<string> => {
+  const option = makeOption(
+    '--list',
+    withRemote ? '-r' : '',
+  );
+  return commonFunction('branch', option);
 };
 
 export const getConfig = (): Promise<string> => {
