@@ -9,7 +9,7 @@ describe('authors test', () => {
 
     if (isCI) {
       expect(authorData).toStrictEqual([
-        {name: 'tkskto', email: 'tkskto@gmail.com', commitCount: 1},
+        {name: 'kato takaeshi', email: 'tkskto@gmail.com', commitCount: 1},
       ]);
     } else {
       expect(authorData).toStrictEqual([
