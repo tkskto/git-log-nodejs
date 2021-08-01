@@ -25,10 +25,9 @@ declare module 'git-log-nodejs' {
     commitCount: number;
   }
 
-  export type Branch = {
-    name: string;
-    remote: string;
-    hash: string;
+  export type Branches = {
+    local: string[];
+    remote?: Record<string, string[]>;
   }
 
   export type Tag = {
@@ -55,7 +54,7 @@ declare module 'git-log-nodejs' {
 
   export function authors(params?: LogOption): Promise<Author[]>;
 
-  export function branches(): Branch[];
+  export function branches(withRemote: boolean): Promise<Branches>;
 
   export function tags(): Tag[];
 
