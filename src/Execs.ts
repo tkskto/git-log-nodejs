@@ -81,3 +81,7 @@ export const getConfig = (): Promise<string> => {
 export const getRemote = (): Promise<string> => {
   return commonFunction('remote', ['-v']);
 };
+
+export const getTag = (): Promise<string> => {
+  return commonFunction('show-ref', ['--tags']);
+};
