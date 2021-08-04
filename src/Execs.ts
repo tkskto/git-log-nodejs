@@ -22,6 +22,9 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
     childProcess.on('close', (code) => {
       if (0 === code) {
         resolve(result.trim());
+      } else if (result === '') {
+        // if result is void
+        resolve('');
       } else {
         reject(`something went wrong with command: git ${options.join(' ')}`);
       }

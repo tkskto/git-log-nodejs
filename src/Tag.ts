@@ -19,6 +19,6 @@ export const tags = async (): Promise<Tag[]> => {
       };
     });
   } catch (err) {
-    throw new Error(makeErrorMessage('tags in Tag.ts', err.message));
+    throw new Error(makeErrorMessage('tags in Tag.ts', err));
   }
 };
