@@ -6,6 +6,10 @@ export const tags = async (): Promise<Tag[]> => {
   try {
     const logs: string = await getTag();
 
+    if (!logs.trim()) {
+      return [];
+    }
+
     return logs.trim().split(/\n|\r\n/g).map((log) => {
       const [hash, tag] = log.split(' ');
 
