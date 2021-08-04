@@ -7,12 +7,7 @@ describe('authors test', () => {
     const tag = await tags();
 
     if (isCI) {
-      expect(tag).toContain({
-        origin: {
-          fetch: 'https://github.com/tkskto/git-log-nodejs',
-          push: 'https://github.com/tkskto/git-log-nodejs',
-        },
-      });
+      expect(tag).toStrictEqual([]);
     } else {
       expect(tag).toStrictEqual([
         { hash: '24c2a9e90836d3eb13693099568408dca476b5cc', name: 'v0.1.0' },
