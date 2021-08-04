@@ -74,6 +74,12 @@ Type of `Remote` is `Record<string, { fetch: string, push: string }>`. `Record` 
 
 `origin` is remoteName. It depends on your settings.
 
+### Tag
+
+#### `Tag.name`: string
+
+#### `Tag.hash`: string
+
 ## Functions
 
 See the [types](./types/index.d.ts) for details.
@@ -164,10 +170,6 @@ Get config info with `git config --list`.
 
 Depends on your settings. See [git-config Documentation](https://git-scm.com/docs/git-config).
 
-### [WIP] tags()
-
-Get tag info.
-
 ### remotes()
 
 Get remote info with `git remote -v` command.
@@ -183,3 +185,19 @@ Get remote info with `git remote -v` command.
 #### Returns
 
 *   [Remote](#Remote)
+
+### tags()
+
+Get tag info with `git show-ref --tags` command.
+
+#### Since
+
+0.4.0
+
+#### Arguments
+
+*   nothing
+
+#### Returns
+
+*   [Tag](#Tag)

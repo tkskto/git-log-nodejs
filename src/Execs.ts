@@ -22,6 +22,9 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
     childProcess.on('close', (code) => {
       if (0 === code) {
         resolve(result.trim());
+      } else if (result === '') {
+        // if result is void
+        resolve('');
       } else {
         reject(`something went wrong with command: git ${options.join(' ')}`);
       }
@@ -80,4 +83,8 @@ export const getConfig = (): Promise<string> => {
 
 export const getRemote = (): Promise<string> => {
   return commonFunction('remote', ['-v']);
+};
+
+export const getTag = (): Promise<string> => {
+  return commonFunction('show-ref', ['--tags']);
 };

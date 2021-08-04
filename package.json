@@ -1,6 +1,6 @@
 {
   "name": "git-log-nodejs",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "git-log-nodejs is a tool to get git logs.",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
