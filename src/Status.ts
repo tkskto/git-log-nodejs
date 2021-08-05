@@ -6,6 +6,11 @@ import {makeErrorMessage} from './ErrorLogFactory';
 export const status = async (): Promise<File[]> => {
   try {
     const result = await getFileStatus();
+
+    if (!result) {
+      return [];
+    }
+
     const files = result.trim().split('\n');
 
     return parseFileData(files);
