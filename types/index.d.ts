@@ -41,8 +41,10 @@ declare module 'git-log-nodejs' {
     dir: string;
   }
 
+  export type FileStatus = 'added' | 'deleted' | 'ignored' | 'modified' | 'renamed' | 'unmodified' | 'untracked';
+
   export interface File {
-    type: 'add' | 'modify' | 'delete';
+    type: FileStatus;
     fileName: string;
   }
 
@@ -61,4 +63,6 @@ declare module 'git-log-nodejs' {
   export function config(): Promise<Config>;
 
   export function setGitLogConfig(config: GitLogConfig): void;
+
+  export function status(): File[];
 }

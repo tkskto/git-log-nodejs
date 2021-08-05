@@ -68,11 +68,11 @@ describe('commits test', () => {
         files: [
           {
             fileName: 'LICENSE',
-            type: 'add',
+            type: 'added',
           },
           {
             fileName: 'README.md',
-            type: 'add',
+            type: 'added',
           },
         ]
       });

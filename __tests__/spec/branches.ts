@@ -2,7 +2,7 @@ import {branches} from '../../src';
 
 const isCI = process.argv[2] === '--ci';
 
-describe('branch test', () => {
+describe('branches test', () => {
   test('local', async () => {
     const branch = await branches(false);
 
