@@ -3,6 +3,7 @@ import {branches} from './Branch';
 import {commits} from './Commit';
 import {configs} from './Config';
 import {remotes} from './Remote';
+import {status} from './Status';
 import {tags} from './Tag';
 
 export {
@@ -11,5 +12,6 @@ export {
   commits,
   configs,
   remotes,
+  status,
   tags,
 };

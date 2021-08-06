@@ -2,7 +2,7 @@ import {remotes} from '../../src';
 
 const isCI = process.argv[2] === '--ci';
 
-describe('authors test', () => {
+describe('remotes test', () => {
   test('default', async () => {
     const remote = await remotes();
 

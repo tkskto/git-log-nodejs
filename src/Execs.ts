@@ -85,6 +85,10 @@ export const getRemote = (): Promise<string> => {
   return commonFunction('remote', ['-v']);
 };
 
+export const getFileStatus = (): Promise<string> => {
+  return commonFunction('status', ['-s']);
+};
+
 export const getTag = (): Promise<string> => {
   return commonFunction('show-ref', ['--tags']);
 };

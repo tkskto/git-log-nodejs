@@ -42,7 +42,11 @@ See the [types](./types/index.d.ts) for details.
 
 #### branches.local: string[]
 
+Get the list of local.
+
 #### branches.remote: Record<string, string[]>
+
+Get the list of branches along with the remote name.
 
 ### Commit
 
@@ -54,11 +58,15 @@ See the [types](./types/index.d.ts) for details.
 
 #### `Commit.parent`: string[]
 
+Hash of the parent commit. The merge commit has two parents.
+
 #### `Commit.files`: [File](#File)[]
+
+The list of files included in this commit.
 
 ### File
 
-#### `File.type`: 'add' | 'modify' | 'delete'
+#### `File.type`: 'added' | 'deleted' | 'ignored' | 'modified' | 'renamed' | 'unmodified' | 'untracked'
 
 #### `File.fileName`: string
 
@@ -185,6 +193,22 @@ Get remote info with `git remote -v` command.
 #### Returns
 
 *   [Remote](#Remote)
+
+### status()
+
+Get the list of changed file with `git status -s` command.
+
+#### Since
+
+0.5.0
+
+#### Arguments
+
+*   nothing
+
+#### Returns
+
+*   [File](#File)
 
 ### tags()
 

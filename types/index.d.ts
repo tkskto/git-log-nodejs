@@ -25,8 +25,10 @@ export interface Config {
   [key: string]: (string | Config);
 }
 
+export type FileStatus = 'added' | 'deleted' | 'ignored' | 'modified' | 'renamed' | 'unmodified' | 'untracked';
+
 export interface File {
-  type: 'add' | 'modify' | 'delete';
+  type: FileStatus;
   fileName: string;
 }
 
@@ -62,3 +64,5 @@ export function remotes(): Promise<Remote>;
 export function tags(): Tag[];
 
 export function setGitLogConfig(config: GitLogConfig): void;
+
+export function status(): File[];
