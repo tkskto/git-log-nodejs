@@ -25,8 +25,10 @@ export interface Config {
   [key: string]: (string | Config);
 }
 
+export type FileStatus = 'added' | 'deleted' | 'ignored' | 'modified' | 'renamed' | 'unmodified' | 'untracked';
+
 export interface File {
-  type: 'add' | 'modify' | 'delete';
+  type: FileStatus;
   fileName: string;
 }
 
@@ -45,14 +47,6 @@ export type Remote = Record<string, { fetch: string, push: string }>;
 export interface Tag {
   name: string;
   hash: string;
-}
-
-export type FileStatus = 'added' | 'deleted' | 'ignored' | 'modified' | 'renamed' | 'unmodified' | 'untracked';
-
-
-export interface File {
-  type: FileStatus;
-  fileName: string;
 }
 
 // # Functions
