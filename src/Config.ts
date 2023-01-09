@@ -1,6 +1,7 @@
 import {Config} from 'git-log-nodejs';
 import {getConfig} from './Execs';
 import {makeErrorMessage} from './ErrorLogFactory';
+import {END_OF_LINE} from './Defaults';
 
 /**
  * [key1.key2.key3 = value] -> {key1: {key2: {key3: value}}}
@@ -39,7 +40,7 @@ export const convertConfigToJSON = (configList: string[]): Config => {
 export const configs = async (): Promise<Config> => {
   try {
     const result = await getConfig();
-    const configList = result.split('\n');
+    const configList = result.split(END_OF_LINE);
 
     return convertConfigToJSON(configList);
   } catch (err) {

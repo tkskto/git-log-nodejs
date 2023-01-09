@@ -14,8 +14,8 @@ describe('commits test', () => {
       expect(first.hasOwnProperty('date')).toBeTruthy();
       expect(first.hasOwnProperty('parent')).toBeTruthy();
       expect(first.hasOwnProperty('files')).toBeFalsy();
-
       expect(first.hasOwnProperty('author')).toBeTruthy();
+
       if (first.author) {
         expect(first.author.hasOwnProperty('email')).toBeTruthy();
         expect(first.author.hasOwnProperty('name')).toBeTruthy();
@@ -27,8 +27,8 @@ describe('commits test', () => {
           email: 'tkskto@gmail.com',
           name: 'kato takeshi',
         },
-        date: '1627013540',
-        parent: '',
+        date: '2021-07-23T13:12:20+09:00',
+        parent: [''],
       });
     }
   });
@@ -63,8 +63,8 @@ describe('commits test', () => {
           email: 'tkskto@gmail.com',
           name: 'kato takeshi',
         },
-        date: '1627013540',
-        parent: '',
+        date: '2021-07-23T13:12:20+09:00',
+        parent: [''],
         files: [
           {
             fileName: 'LICENSE',
@@ -105,8 +105,8 @@ describe('commits test', () => {
           email: 'tkskto@gmail.com',
           name: 'kato takeshi',
         },
-        date: '1627013540',
-        parent: '',
+        date: '2021-07-23T13:12:20+09:00',
+        parent: [''],
       });
     }
   });

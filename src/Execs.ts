@@ -7,7 +7,6 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
     let result = '';
     const options = [command, ...option];
 
-    options.push('--date=iso-local');
     // console.log(`\u001b[32m command:\u001b[37m git ${options.join(' ')}`);
 
     const childProcess = spawn('git', options, {timeout: DEFAULT_TIMEOUT_MILLISECONDS});
@@ -56,6 +55,7 @@ const makeCommitOption = (count: number, withFile: boolean, branch: string): str
      * }
      */
     '--pretty=format:{"author":{"name":"%an","email":"%ae"},"hash":"%H","date":"%aI","parent":"%P"}', // do not include space in format
+    '--date=iso-local',
   );
 };
 

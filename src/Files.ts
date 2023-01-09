@@ -1,7 +1,7 @@
 import {File, FileStat, FileStatus} from 'git-log-nodejs';
 import {getFileStat} from './Execs';
 import {makeErrorMessage} from './ErrorLogFactory';
-import {REGEXP_END_OF_LINE} from './Defaults.js';
+import {REGEXP_END_OF_LINE} from './Defaults';
 
 /**
  * @param {string[]} files the string must be like a {[A|M|D]\t{filename}}
