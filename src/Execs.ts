@@ -1,4 +1,4 @@
-import {LogOption} from 'git-log-nodejs';
+import {DiffOption, LogOption} from 'git-log-nodejs';
 import {spawn} from 'child_process';
 import {DEFAULT_TIMEOUT_MILLISECONDS} from './Defaults';
 
@@ -81,8 +81,8 @@ export const getAuthor = ({branch}: LogOption): Promise<string> => {
   const option = makeOption(
     // branch name is required. See <https://git-scm.com/docs/git-shortlog> description.
     branch ? branch : 'HEAD',
-    // this is include summary and emails
-    '-se'
+    // this includes summary and emails
+    '-se',
   );
   return commonFunction('shortlog', option);
 };
@@ -113,4 +113,18 @@ export const getFileStat = (version1: string, version2: string): Promise<string>
 
 export const getTag = (): Promise<string> => {
   return commonFunction('show-ref', ['--tags']);
+};
+
+export const getDiffBetweenCommits = (hash1: string, hash2: string, config: DiffOption): Promise<string> => {
+  const option = makeOption(
+    config.nameOnly ? '--name-only' : '',
+  );
+  return commonFunction('diff', [`${hash1}..${hash2}`, ...option]);
+};
+
+export const getDiffFromCommits = (hash: string, count: number, config: DiffOption): Promise<string> => {
+  const option = makeOption(
+    config.nameOnly ? '--name-only' : '',
+  );
+  return commonFunction('diff', [`${hash}~${Math.abs(count)}`, ...option]);
 };

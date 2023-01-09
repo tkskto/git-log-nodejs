@@ -49,6 +49,10 @@ export interface LogOption {
   branch: string | 'HEAD';
 }
 
+export interface DiffOption {
+  nameOnly: boolean;
+}
+
 export type Remote = Record<string, { fetch: string, push: string }>;
 
 export interface Tag {
@@ -73,3 +77,7 @@ export function tags(): Tag[];
 export function setGitLogConfig(config: GitLogConfig): void;
 
 export function status(): File[];
+
+export function diffBetween(hash1: string, hash2: string): string[];
+
+export function diffFrom(hashOrHead: string | 'HEAD', count: number): string[];
