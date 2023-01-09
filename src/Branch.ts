@@ -1,18 +1,19 @@
 import {Branches} from 'git-log-nodejs';
 import {getBranch} from './Execs';
 import {makeErrorMessage} from './ErrorLogFactory';
+import {REGEXP_END_OF_LINE} from './Defaults';
 
 export const branches = async (withRemote = true): Promise<Branches> => {
   try {
     const local: string = await getBranch(false);
-    const lines: string[] = local.split(/\n|\r\n/g).map((name) => name.replace('* ', '').trim());
+    const lines: string[] = local.split(REGEXP_END_OF_LINE).map((name) => name.replace('* ', '').trim());
     const result: Branches = {
       local: lines,
     };
 
     if (withRemote) {
       const remote: string = await getBranch(true);
-      const lines: string[] = remote.replace(local,'').split(/\n|\r\n/g);
+      const lines: string[] = remote.replace(local,'').split(REGEXP_END_OF_LINE);
       const remotes: Record<string, string[]> = {};
 
       lines.forEach((branch: string) => {

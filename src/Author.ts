@@ -1,13 +1,13 @@
 import {LogOption, Author} from 'git-log-nodejs';
 import {getAuthor} from './Execs';
 import {makeErrorMessage} from './ErrorLogFactory';
-import {DEFAULT_AUTHOR_OPTION} from './Defaults';
+import {DEFAULT_AUTHOR_OPTION, REGEXP_END_OF_LINE} from './Defaults';
 
 export const authors = async (params: LogOption = DEFAULT_AUTHOR_OPTION): Promise<Author[]> => {
   try {
     const logs: string = await getAuthor(params);
 
-    return logs.trim().split(/\n|\r\n/g).map((log) => {
+    return logs.trim().split(REGEXP_END_OF_LINE).map((log) => {
       const [count, nameAndEmail] = log.split(/\t/ug);
       const [, email] = nameAndEmail.match(/<(.+)>/u) || '';
       const authorData: Author = {

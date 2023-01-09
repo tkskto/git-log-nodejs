@@ -1,6 +1,7 @@
 import {Tag} from 'git-log-nodejs';
 import {makeErrorMessage} from './ErrorLogFactory';
 import {getTag} from './Execs';
+import {REGEXP_END_OF_LINE} from './Defaults';
 
 export const tags = async (): Promise<Tag[]> => {
   try {
@@ -10,7 +11,7 @@ export const tags = async (): Promise<Tag[]> => {
       return [];
     }
 
-    return logs.trim().split(/\n|\r\n/g).map((log) => {
+    return logs.trim().split(REGEXP_END_OF_LINE).map((log) => {
       const [hash, tag] = log.split(' ');
 
       return {
