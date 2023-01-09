@@ -1,4 +1,7 @@
-import {File, FileStatus} from 'git-log-nodejs';
+import {File, FileStat, FileStatus} from 'git-log-nodejs';
+import {getFileStat} from './Execs';
+import {makeErrorMessage} from './ErrorLogFactory';
+import {REGEXP_END_OF_LINE} from './Defaults.js';
 
 /**
  * @param {string[]} files the string must be like a {[A|M|D]\t{filename}}
@@ -28,4 +31,22 @@ export const parseFileData = (files: string[]): File[] => {
       fileName,
     };
   });
+};
+
+export const statOfFiles = async (version1: string, version2: string): Promise<FileStat[]> => {
+  try {
+    const logs: string = await getFileStat(version1, version2);
+
+    return logs.split(REGEXP_END_OF_LINE).filter(log => log.trim()).map((log) => {
+      const [numberOfAddedLine, numberOfDeletedLine, fileName] = log.split(/\s+/);
+
+      return {
+        fileName,
+        numberOfAddedLine: Number(numberOfAddedLine),
+        numberOfDeletedLine: Number(numberOfDeletedLine),
+      };
+    });
+  } catch (err) {
+    throw new Error(makeErrorMessage('statOfFiles in Files.ts', err.message));
+  }
 };

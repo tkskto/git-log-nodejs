@@ -7,6 +7,7 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
     let result = '';
     const options = [command, ...option];
 
+    options.push('--date=iso-local');
     // console.log(`\u001b[32m command:\u001b[37m git ${options.join(' ')}`);
 
     const childProcess = spawn('git', options, {timeout: DEFAULT_TIMEOUT_MILLISECONDS});
@@ -21,7 +22,7 @@ const commonFunction = (command: string, option = ['']): Promise<string> => {
 
     childProcess.on('close', (code) => {
       if (0 === code) {
-        resolve(result.trim());
+        resolve(result.trim().replaceAll('\\', ' '));
       } else if (result === '') {
         // if result is void
         resolve('');
@@ -36,8 +37,8 @@ const makeOption = (...params: string[]): string[] => {
   return params.filter((item) => item); // filtering false
 };
 
-export const getCommits = ({count, withFile, branch}: LogOption): Promise<string> => {
-  const option = makeOption(
+const makeCommitOption = (count: number, withFile: boolean, branch: string): string[] => {
+  return makeOption(
     branch ? branch : '',
     count > 0 ? `--max-count=${count}` : '',
     withFile ? '--name-status' : '',
@@ -54,9 +55,26 @@ export const getCommits = ({count, withFile, branch}: LogOption): Promise<string
      *   parent: string,
      * }
      */
-    '--pretty=format:{"author":{"name":"%an","email":"%ae"},"hash":"%H","date":"%at","parent":"%P"}', // do not include space in format
+    '--pretty=format:{"author":{"name":"%an","email":"%ae"},"hash":"%H","date":"%aI","parent":"%P"}', // do not include space in format
   );
+};
+
+export const getCommits = ({count, withFile, branch}: LogOption): Promise<string> => {
+  const option = makeCommitOption(count, withFile, branch);
+
   return commonFunction('log', option);
+};
+
+export const getCommitOfFile = (filename: string, {count, withFile, branch}: LogOption): Promise<string> => {
+  const option = makeCommitOption(count, withFile, branch);
+
+  return commonFunction('log', [...option, '--', filename]);
+};
+
+export const getCommitOfHash = (hash: string, {count, withFile, branch}: LogOption): Promise<string> => {
+  const option = makeCommitOption(count, withFile, branch);
+
+  return commonFunction('show', [...option, hash]);
 };
 
 export const getAuthor = ({branch}: LogOption): Promise<string> => {
@@ -87,6 +105,10 @@ export const getRemote = (): Promise<string> => {
 
 export const getFileStatus = (): Promise<string> => {
   return commonFunction('status', ['-s']);
+};
+
+export const getFileStat = (version1: string, version2: string): Promise<string> => {
+  return commonFunction('log', ['--numstat', '--no-merges', '--pretty=', `${version1}..${version2}`]);
 };
 
 export const getTag = (): Promise<string> => {

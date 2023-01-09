@@ -32,6 +32,12 @@ export interface File {
   fileName: string;
 }
 
+export interface FileStat {
+  fileName: string;
+  numberOfAddedLine: number;
+  numberOfDeletedLine: number;
+}
+
 export interface GitLogConfig {
   dir: string;
 }
@@ -39,6 +45,7 @@ export interface GitLogConfig {
 export interface LogOption {
   count: number;
   withFile: boolean;
+  withMessage: boolean;
   branch: string | 'HEAD';
 }
 
